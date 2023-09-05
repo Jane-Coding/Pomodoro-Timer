@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar2</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Choose duration of study</h1>
+      <section class="session_choise">
+        <label for="duration">Choose duration:</label>
+        <select name="duration" id="duration">
+          <option value="regular">Regular</option>
+          <option value="long">Long</option>
+          <option value="extra-long">Extra Long</option>
+        </select>
+        <!-- <span>B</span> -->
+        <!-- <button class="btn">Short</button> -->
+        <!-- <button class="btn">Average</button> -->
+        <!-- <button class="btn">Long</button> -->
+        <!-- <button class="btn">Extra Long</button> -->
+        <!-- <span>B</span> -->
+      </section>
+
+      <section class="countdown">
+        <label for="minutes">Minutes</label>
+        <input
+          id="minutes"
+          type="number"
+          value="25"
+          min="25"
+          max="60"
+          step="5"
+        />
+        <span>:</span>
+        <label for="seconds">Seconds</label>
+        <input id="seconds" type="number" value="00" min="0" max="59" />
+      </section>
+
+      <section class="control_btns">
+        <button id="start_btn" class="btn">Start study session</button>
+        <button id="pause_btn" class="btn">Pause</button>
+        <button id="reset_btn" class="btn">Reset</button>
+        <button id="qotes_btn" class="btn">Get quotes for inspiration</button>
+      </section>
+      <div>
+        <p>Inspirational quotes here</p>
+      </div>
+    </main>
+  </body>
+</html>

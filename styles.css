@@ -1,0 +1,125 @@
+:root {
+    --prussian-blue: #12263A;
+    --verdigis: #56A3A6;
+    /* --light-yellow: #F4FDD9; */
+    --beige: #EDEAD0;
+    --rose-taupe: #7F636E;
+    --puce: #B88C9E;
+
+    --btn-padding: .5em;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: var(--beige);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    padding: .5rem;
+    margin: 0;
+    text-align: center;
+}
+
+.session_choise {
+    width: 90%;
+    padding: .5rem;
+    gap: 1em;
+    
+}
+
+.session_choise select, 
+option{
+    width: 50%;
+    background-color: var(--rose-taupe);
+    color: var(--prussian-blue);
+    font-weight: 800;
+    text-align: center;
+    border: 2px solid var(--puce)
+}
+
+main {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--prussian-blue);
+    color: var(--puce)
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+}
+
+.countdown > *:nth-child(1){
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+}
+
+.countdown > *:nth-child(2){
+    grid-column: 1;
+    grid-row: 2;
+}
+.countdown > *:nth-child(3){
+    grid-column: 2;
+    grid-row-end: span 2;
+    align-self: center;
+    font-size: 3rem;
+}
+.countdown > *:nth-child(4){
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: center;
+}
+.countdown > *:nth-child(5){
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.countdown > input {
+    height: 1.7em;
+    width: 1.7em;
+    color: var(--prussian-blue);
+    border: none;
+    text-align: center;
+    font-weight: 800;
+    font-size: 3rem;
+    background-color: var(--rose-taupe);
+}
+
+.control_btns{
+    width: 90%;
+    padding: .5rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1em;
+}
+
+.btn {
+    padding: var(--btn-padding);
+    background-color: var(--rose-taupe);
+    color: var(--prussian-blue);
+    font-size: 1rem;
+    font-weight: 700;
+    border: 2px solid var(--puce);
+    border-radius: 20px;
+}
+
+.control_btns button:nth-of-type(1){
+    grid-column-end: span 2;
+}
+
+.control_btns button:nth-of-type(4){
+    grid-column-end: span 2;
+}
+
+
+
+/* FFBF46 */
