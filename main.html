@@ -13,7 +13,7 @@
       <section class="session_choise">
         <label for="duration">Choose duration:</label>
         <select name="duration" id="duration">
-          <option value="regular">Regular</option>
+          <option value="regular" selected>Regular</option>
           <option value="long">Long</option>
           <option value="extra-long">Extra Long</option>
         </select>
@@ -27,17 +27,10 @@
 
       <section class="countdown">
         <label for="minutes">Minutes</label>
-        <input
-          id="minutes"
-          type="number"
-          value="25"
-          min="25"
-          max="60"
-          step="5"
-        />
+        <input id="minutes" type="number" value="25" min="1" />
         <span>:</span>
         <label for="seconds">Seconds</label>
-        <input id="seconds" type="number" value="00" min="0" max="59" />
+        <input id="seconds" type="number" value="0" min="0" max="59" />
       </section>
 
       <section class="control_btns">
