@@ -16,6 +16,7 @@
           <option value="regular" selected>Regular</option>
           <option value="long">Long</option>
           <option value="extra-long">Extra Long</option>
+          <option value="timer">Set timer</option>
         </select>
         <!-- <span>B</span> -->
         <!-- <button class="btn">Short</button> -->
@@ -30,7 +31,7 @@
         <input id="minutes" type="number" value="25" min="1" />
         <span>:</span>
         <label for="seconds">Seconds</label>
-        <input id="seconds" type="number" value="0" min="0" max="59" />
+        <input id="seconds" type="number" value="00" min="0" max="59" />
       </section>
 
       <section class="control_btns">
@@ -40,7 +41,7 @@
         <button id="qotes_btn" class="btn">Get quotes for inspiration</button>
       </section>
       <div>
-        <p>Inspirational quotes here</p>
+        <p id="quotes">Inspirational quotes here</p>
       </div>
     </main>
   </body>

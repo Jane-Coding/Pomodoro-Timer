@@ -40,54 +40,13 @@ duration.addEventListener("input", function () {
   } else if (duration.value === "extra-long") {
     currentSession.duration = 60;
     minutes.value = currentSession.duration;
+  } else if (duration.value === "timer") {
+    // User timer. Check data and start countdown
+    startButton.innerHTML = "Set countdown";
   }
 });
 
-startButton.addEventListener("click", function (e) {
-  // startButton.innerHTML = "--- Pause ---";
-  // const finish = currentSession.duration * 60000;
-  // let now = new Date();
-  // let current = now.getMilliseconds();
-  // let target = now.setMilliseconds(current + finish);
-
-  // countdown();
-
-  // function countdown(target) {
-  //   t = setInterval(function () {
-  //     const today = new Date().getTime();
-  //     const distance = target - today;
-
-  //     sec = Math.floor((distance / 1000) % 60);
-  //     min = Math.floor((distance / 1000 / 60) % 60);
-
-  //     minutes.value = min;
-
-  //     if (sec < 10) {
-  //       seconds.value = "0" + sec;
-  //     } else {
-  //       seconds.value = sec;
-  //     }
-
-  //     if (distance < 0) {
-  //       console.log("OVER");
-  //       minutes.value = currentSession.rest;
-  //       seconds.value = 0;
-
-  //       clearInterval(t);
-  //     }
-  //   }, 0);
-  // }
-  // switchOn = !switchOn
-  // if(switchOn){
-  //   currentSession.sessionOn = true
-  //   countdown()
-
-  // }
-  // else {
-  //   // startButton.removeEventListener("click", countdown)
-  //   e.stopPropagation()
-  // }
-
+startButton.addEventListener("click", function () {
   countdown();
 });
 
@@ -98,19 +57,16 @@ function countdown() {
   let min = currentSession.duration - 1;
 
   t = setInterval(function () {
-
     if (sec < 10) {
       seconds.value = "0" + sec;
-    }
-    else {
+    } else {
       seconds.value = sec;
     }
     if (min < 10) {
       minutes.value = "0" + min;
-    }
-    else {
+    } else {
       minutes.value = min;
-    }   
+    }
 
     sec = sec - 1;
 
@@ -120,20 +76,18 @@ function countdown() {
           min = currentSession.rest;
           if (min < 10) {
             minutes.value = "0" + min;
-          }
-          else {
+          } else {
             minutes.value = min;
-          } 
+          }
           currentSession.sessionOn = false;
           console.log("break!!!");
         } else {
           min = currentSession.duration;
           if (min < 10) {
             minutes.value = "0" + min;
-          }
-          else {
+          } else {
             minutes.value = min;
-          } 
+          }
           currentSession.sessionOn = true;
           console.log("session!!!!");
         }
@@ -162,3 +116,47 @@ resetButton.addEventListener("click", function () {
   minutes.value = currentSession.duration;
   startButton.innerHTML = "Start study session";
 });
+
+// set countdown for user timer
+// const finish = currentSession.duration * 60000;
+// let now = new Date();
+// let current = now.getMilliseconds();
+// let target = now.setMilliseconds(current + finish);
+
+// countdown();
+
+// function countdown(target) {
+//   t = setInterval(function () {
+//     const today = new Date().getTime();
+//     const distance = target - today;
+
+//     sec = Math.floor((distance / 1000) % 60);
+//     min = Math.floor((distance / 1000 / 60) % 60);
+
+//     minutes.value = min;
+
+//     if (sec < 10) {
+//       seconds.value = "0" + sec;
+//     } else {
+//       seconds.value = sec;
+//     }
+
+//     if (distance < 0) {
+//       console.log("OVER");
+//       minutes.value = currentSession.rest;
+//       seconds.value = 0;
+
+//       clearInterval(t);
+//     }
+//   }, 0);
+// }
+// switchOn = !switchOn
+// if(switchOn){
+//   currentSession.sessionOn = true
+//   countdown()
+
+// }
+// else {
+//   // startButton.removeEventListener("click", countdown)
+//   e.stopPropagation()
+// }
