@@ -84,9 +84,8 @@ startButton.addEventListener("click", function () {
   }
 });
 
-function countdown(minutesS, secondsS) {
-  let sec = secondsS;
-  let min = minutesS - 1;
+function countdown(min, sec) {
+  min--;
 
   t = setInterval(function () {
     if (sec < 10) {
@@ -144,8 +143,9 @@ pauseButton.addEventListener("click", function () {
 
   if (minutes.value == currentSession.duration) {
     startButton.innerHTML = "Start study session";
+  } else {
+    startButton.innerHTML = "Continue";
   }
-  else {startButton.innerHTML = "Continue";}
 });
 
 resetButton.addEventListener("click", function () {
