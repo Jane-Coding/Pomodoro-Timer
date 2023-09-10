@@ -142,7 +142,10 @@ pauseButton.addEventListener("click", function () {
   console.log(currentSession.min);
   console.log(currentSession.sec);
 
-  startButton.innerHTML = "Continue";
+  if (minutes.value == currentSession.duration) {
+    startButton.innerHTML = "Start study session";
+  }
+  else {startButton.innerHTML = "Continue";}
 });
 
 resetButton.addEventListener("click", function () {
