@@ -7,39 +7,60 @@ let seconds = document.getElementById("seconds");
 
 let quotes = document.getElementById("quotes");
 
-let switchOn = false;
+// let switchOn = false;
 
 class Session {
   duration;
   rest;
-  timeLeft;
-  sessionOn;
-  time = {
-    sessionMinutes: 0,
-    sessionSeconds: 0,
-  };
+
   constructor(duration, rest) {
     this.duration = duration;
     this.rest = rest;
   }
 }
 
-let currentSession = new Session(2, 2);
-currentSession.time[0] = 0;
-currentSession.time[1] = 0;
+class Study extends Session {
+  sessionOn;
+
+  #sessionMinutes = 0;
+  #sessionSeconds = 0;
+
+  set timeMin(min) {
+    this.#sessionMinutes = min;
+  }
+  set timeSec(sec) {
+    this.#sessionSeconds = sec;
+  }
+
+  get min() {
+    return this.#sessionMinutes;
+  }
+  get sec() {
+    return this.#sessionSeconds;
+  }
+}
+
+const reguralSession = new Session(25, 5);
+const longSession = new Session(40, 10);
+const extralongSession = new Session(60, 20);
+
+let currentSession = new Study(25, 5);
 
 var t;
 
 duration.addEventListener("input", function () {
   if (duration.value === "regular") {
-    currentSession.duration = 2;
-    minutes.value = currentSession.duration;
+    currentSession.duration = reguralSession.duration;
+    minutes.value = reguralSession.duration;
+    startButton.innerHTML = "Start study session";
   } else if (duration.value === "long") {
-    currentSession.duration = 40;
-    minutes.value = currentSession.duration;
+    currentSession.duration = longSession.duration;
+    minutes.value = longSession.duration;
+    startButton.innerHTML = "Start study session";
   } else if (duration.value === "extra-long") {
-    currentSession.duration = 60;
-    minutes.value = currentSession.duration;
+    currentSession.duration = extralongSession.duration;
+    minutes.value = extralongSession.duration;
+    startButton.innerHTML = "Start study session";
   } else if (duration.value === "timer") {
     // User timer. Check data and start countdown
     startButton.innerHTML = "Set countdown";
@@ -47,14 +68,21 @@ duration.addEventListener("input", function () {
 });
 
 startButton.addEventListener("click", function () {
-  countdown();
+  if (currentSession.min === 0 && currentSession.sec === 0) {
+    countdown(currentSession.duration, 59);
+  } else {
+    currentSession.timeMin = Number(currentSession.min) + 1;
+
+    // console.log( Number(currentSession.min))
+    countdown(currentSession.min, currentSession.sec);
+  }
 });
 
-function countdown() {
-  let sec = 59;
+function countdown(minutesS, secondsS) {
+  let sec = secondsS;
 
   currentSession.sessionOn = true;
-  let min = currentSession.duration - 1;
+  let min = minutesS - 1;
 
   t = setInterval(function () {
     if (sec < 10) {
@@ -101,20 +129,20 @@ function countdown() {
 }
 
 pauseButton.addEventListener("click", function () {
-  currentSession.time[0] = minutes.value;
-  currentSession.time[1] = seconds.value;
-
   clearInterval(t);
 
-  console.log(currentSession.time[0]);
-  console.log(currentSession.time[1]);
+  currentSession.timeMin = minutes.value;
+  currentSession.timeSec = seconds.value;
+  console.log(currentSession.min);
+  console.log(currentSession.sec);
+
+  startButton.innerHTML = "Continue session";
 });
 
 resetButton.addEventListener("click", function () {
   clearInterval(t);
   seconds.value = "0" + 0;
   minutes.value = currentSession.duration;
-  startButton.innerHTML = "Start study session";
 });
 
 // set countdown for user timer
