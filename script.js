@@ -44,7 +44,7 @@ const reguralSession = new Session(25, 5);
 const longSession = new Session(40, 10);
 const extralongSession = new Session(60, 20);
 
-let currentSession = new Study(25, 5);
+let currentSession = new Study(1, 1);
 
 var t;
 
@@ -68,20 +68,24 @@ duration.addEventListener("input", function () {
 });
 
 startButton.addEventListener("click", function () {
-  if (currentSession.min === 0 && currentSession.sec === 0) {
+  if (currentSession.min == 0 && currentSession.sec == 0) {
+    currentSession.sessionOn = true;
+    startButton.innerHTML = "Session in progress";
     countdown(currentSession.duration, 59);
   } else {
     currentSession.timeMin = Number(currentSession.min) + 1;
-
-    // console.log( Number(currentSession.min))
+    currentSession.timeSec = Number(currentSession.sec) - 1;
+    if (currentSession.sessionOn === true) {
+      startButton.innerHTML = "Session in progress";
+    } else {
+      startButton.innerHTML = "Break time!";
+    }
     countdown(currentSession.min, currentSession.sec);
   }
 });
 
 function countdown(minutesS, secondsS) {
   let sec = secondsS;
-
-  currentSession.sessionOn = true;
   let min = minutesS - 1;
 
   t = setInterval(function () {
@@ -108,6 +112,7 @@ function countdown(minutesS, secondsS) {
             minutes.value = min;
           }
           currentSession.sessionOn = false;
+          startButton.innerHTML = "Break time!";
           console.log("break!!!");
         } else {
           min = currentSession.duration;
@@ -117,6 +122,7 @@ function countdown(minutesS, secondsS) {
             minutes.value = min;
           }
           currentSession.sessionOn = true;
+          startButton.innerHTML = "Session in progress";
           console.log("session!!!!");
         }
       }
@@ -136,13 +142,14 @@ pauseButton.addEventListener("click", function () {
   console.log(currentSession.min);
   console.log(currentSession.sec);
 
-  startButton.innerHTML = "Continue session";
+  startButton.innerHTML = "Continue";
 });
 
 resetButton.addEventListener("click", function () {
   clearInterval(t);
   seconds.value = "0" + 0;
   minutes.value = currentSession.duration;
+  startButton.innerHTML = "Start study session";
 });
 
 // set countdown for user timer
