@@ -149,6 +149,8 @@ resetButton.addEventListener("click", function () {
   clearInterval(t);
   seconds.value = "0" + 0;
   minutes.value = currentSession.duration;
+  currentSession.timeMin = 0;
+  currentSession.timeSec = 0;
   startButton.innerHTML = "Start study session";
 });
 
