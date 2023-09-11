@@ -49,6 +49,15 @@ let currentSession = new Study(1, 1);
 var t;
 
 duration.addEventListener("input", function () {
+  if(t){
+    confirmReset()    
+  }
+  else{
+    checkDuration()
+  }
+});
+
+function checkDuration(){
   if (duration.value === "regular") {
     currentSession.duration = reguralSession.duration;
     minutes.value = reguralSession.duration;
@@ -65,7 +74,18 @@ duration.addEventListener("input", function () {
     // User timer. Check data and start countdown
     startButton.innerHTML = "Set countdown";
   }
-});
+}
+
+function confirmReset() {
+  const response = confirm("If you change duration now it will reset current session. Are you sure you want to continue?")
+  if(response){
+    console.log("Restart session")
+    fullReset()
+  }
+  else {
+    console.log("Do nothing")
+  }
+}
 
 startButton.addEventListener("click", function () {
   if (currentSession.min == 0 && currentSession.sec == 0) {
@@ -133,29 +153,38 @@ function countdown(min, sec) {
   }, 1000);
 }
 
-pauseButton.addEventListener("click", function () {
-  clearInterval(t);
-
-  currentSession.timeMin = minutes.value;
-  currentSession.timeSec = seconds.value;
-  console.log(currentSession.min);
-  console.log(currentSession.sec);
-
-  if (minutes.value == currentSession.duration) {
-    startButton.innerHTML = "Start study session";
+pauseButton.addEventListener("click", function (e) {
+  if (!t) {
+    e.preventDefault();
   } else {
-    startButton.innerHTML = "Continue";
+    clearInterval(t);
+
+    currentSession.timeMin = minutes.value;
+    currentSession.timeSec = seconds.value;
+    console.log(currentSession.min);
+    console.log(currentSession.sec);
+
+    if (minutes.value == currentSession.duration) {
+      startButton.innerHTML = "Start study session";
+    } else {
+      startButton.innerHTML = "Continue";
+    }
   }
 });
 
 resetButton.addEventListener("click", function () {
+  fullReset()
+});
+
+function fullReset(){
   clearInterval(t);
+  t = !t
   seconds.value = "0" + 0;
-  minutes.value = currentSession.duration;
+  checkDuration()
   currentSession.timeMin = 0;
   currentSession.timeSec = 0;
   startButton.innerHTML = "Start study session";
-});
+}
 
 // set countdown for user timer
 // const finish = currentSession.duration * 60000;
