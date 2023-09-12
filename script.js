@@ -7,8 +7,6 @@ let seconds = document.getElementById("seconds");
 
 let quotes = document.getElementById("quotes");
 
-// let switchOn = false;
-
 class Session {
   duration;
   rest;
@@ -75,17 +73,26 @@ function checkDuration() {
   } else if (duration.value === "timer") {
     minutes.value = "00";
     seconds.value = "00";
-    currentSession.setMin = 0;
-    currentSession.setSec = 0;
-    currentSession.duration = 0;
     currentSession.rest = "none";
     startButton.innerHTML = "Set time to countdown";
 
     minutes.addEventListener("input", function () {
-      currentSession.setMin = minutes.value;
+      if (minutes.value < 10) {
+        minutes.value = "0" + Number(minutes.value);
+        currentSession.setMin = minutes.value;
+      }
+       else {
+        currentSession.setMin = minutes.value;
+      }
     });
     seconds.addEventListener("input", function () {
-      currentSession.setSec = seconds.value;
+      if (seconds.value < 10) {
+        seconds.value = "0" + Number(seconds.value);
+        currentSession.setSec = seconds.value        
+      } 
+      else {
+        currentSession.setSec = seconds.value;
+      }
     });
   }
 }
@@ -126,7 +133,7 @@ startButton.addEventListener("click", function () {
     currentSession.setSec = Number(currentSession.sec) - 1;
     if (currentSession.sessionOn === true) {
       startButton.innerHTML = "Session in progress";
-    } else if (currentSession.rest === "none") {
+    } else if (currentSession.rest === "none") {      
       startButton.innerHTML = "Timer countdown";
     } else {
       startButton.innerHTML = "Break time!";
@@ -155,7 +162,6 @@ function countdown(min, sec) {
     if (sec < 0) {
       if (min === 0) {
         if (currentSession.rest === "none") {
-          startButton.innerHTML = "Time is up!";
           fullReset();
         } else if (currentSession.sessionOn === true) {
           min = currentSession.rest;
@@ -218,47 +224,3 @@ function fullReset() {
   currentSession.setMin = 0;
   currentSession.setSec = 0;
 }
-
-// set countdown for user timer
-// const finish = currentSession.duration * 60000;
-// let now = new Date();
-// let current = now.getMilliseconds();
-// let target = now.setMilliseconds(current + finish);
-
-// countdown();
-
-// function countdown(target) {
-//   t = setInterval(function () {
-//     const today = new Date().getTime();
-//     const distance = target - today;
-
-//     sec = Math.floor((distance / 1000) % 60);
-//     min = Math.floor((distance / 1000 / 60) % 60);
-
-//     minutes.value = min;
-
-//     if (sec < 10) {
-//       seconds.value = "0" + sec;
-//     } else {
-//       seconds.value = sec;
-//     }
-
-//     if (distance < 0) {
-//       console.log("OVER");
-//       minutes.value = currentSession.rest;
-//       seconds.value = 0;
-
-//       clearInterval(t);
-//     }
-//   }, 0);
-// }
-// switchOn = !switchOn
-// if(switchOn){
-//   currentSession.sessionOn = true
-//   countdown()
-
-// }
-// else {
-//   // startButton.removeEventListener("click", countdown)
-//   e.stopPropagation()
-// }
