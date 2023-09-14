@@ -6,8 +6,15 @@
     --rose-taupe: #7F636E;
     --puce: #B88C9E;
 
-    --btn-padding: .5em;
+    --btn-padding: .3em;
     --btn-radius: 20px;
+
+    --fs-110: 1.1em;
+    --fs-120: 1.2em;
+    --fs-150: 1.5em;
+    --fs-300: 3em;
+    --fs-350: 3.5em;
+    --fs-400: 4em;
 }
 
 body {
@@ -26,31 +33,87 @@ h1 {
 }
 
 .session_choise {
-    width: 90%;
+    width: 90vw;
     padding: .5rem;
-    gap: 1em;
-    
+    font-size: var(--fs-120);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: .3em;    
+}
+.session_choise label {
+    align-self: center;
+}
+
+ @media(min-width:375px){
+    .session_choise{
+        flex-direction: row;
+        justify-content: center;
+    }    
 }
 
 .session_choise select, 
 option{
-    width: 50%;
     background-color: var(--rose-taupe);
     color: var(--prussian-blue);
     font-weight: 800;
     text-align: center;
     border: 2px solid var(--puce);
     border-radius: var(--btn-radius);
+    font-size: var(--fs-110);
+    padding: 0 .5em;
 }
 
 main {
-    height: 85vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-color: var(--prussian-blue);
-    color: var(--puce)
+    color: var(--puce);
+    font-size: .8rem;
+}
+@media(min-width: 768px){
+    main{
+        width: 80vw;
+    }
+}
+@media(min-width: 768px){
+    main{
+        width: 70vw;
+        height: 80vh;
+        font-size: var(--fs-120);
+    }
+}
+@media(min-width: 1200px){
+    main{
+        width: 60vw;
+    }
+}
+@media(min-width: 1500px){
+    main{
+        width: 50vw;
+    }
+}
+@media(min-width: 1800px){
+    main{
+        width: 40vw;
+    }
+}
+
+@media(min-height: 750px){
+    main {
+        font-size: var(--fs-120);
+    }
+}
+
+@media(min-height: 950px){
+    main {
+        font-size: var(--fs-150);
+    }
 }
 
 .countdown {
@@ -69,12 +132,27 @@ main {
     grid-column: 1;
     grid-row: 2;
 }
+
 .countdown > *:nth-child(3){
     grid-column: 2;
     grid-row-end: span 2;
     align-self: center;
-    font-size: 3rem;
+    font-size: var(--fs-300);
 }
+
+.dots {
+    animation: 0.5s infinite alternate blink;
+}
+
+@keyframes blink {
+    0%{opacity: 0}
+}
+@media(min-width:320px){
+    .countdown > *:nth-child(3) {
+        font-size: var(--fs-400);
+    }
+}
+
 .countdown > *:nth-child(4){
     grid-column: 3;
     grid-row: 1;
@@ -90,10 +168,37 @@ main {
     width: 1.7em;
     color: var(--prussian-blue);
     border: none;
+    border-radius: 10px;
     text-align: center;
     font-weight: 800;
-    font-size: 3rem;
+    font-size: var(--fs-300);
     background-color: var(--rose-taupe);
+}
+
+@media(min-width:320px){
+    .countdown > input {
+        font-size: var(--fs-350);
+    }
+}
+
+@media(min-width: 600px){
+    .countdown > input {
+        font-size: var(--fs-400);
+    }
+}
+
+.user_info{
+    padding: .5rem;
+    font-size: var(--fs-120);
+}
+
+.user_info p {
+    margin: 0;
+}
+
+.study_counter{
+    font-weight: 700;
+    font-size: var(--fs-120);
 }
 
 .control_btns{
@@ -104,11 +209,22 @@ main {
     gap: 1em;
 }
 
+@media(min-width:600px){
+    .control_btns{
+        width: 80%;
+    }
+}
+ @media(min-width:800px){
+    .control_btns{
+        width: 70%;
+    }
+}
+
 .btn {
     padding: var(--btn-padding);
     background-color: var(--rose-taupe);
     color: var(--prussian-blue);
-    font-size: 1rem;
+    font-size: var(--fs-120);
     font-weight: 700;
     border: 2px solid var(--puce);
     border-radius: var(--btn-radius);
@@ -121,7 +237,3 @@ main {
 .control_btns button:nth-of-type(4){
     grid-column-end: span 2;
 }
-
-
-
-/* FFBF46 */

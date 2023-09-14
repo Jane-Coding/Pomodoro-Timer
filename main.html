@@ -9,7 +9,7 @@
   </head>
   <body>
     <main>
-      <h1>Choose duration of study</h1>
+      <h1>Welcome to StudyApp</h1>
       <section class="session_choise">
         <label for="duration">Choose duration:</label>
         <select name="duration" id="duration">
@@ -18,20 +18,20 @@
           <option value="extra-long">Extra Long</option>
           <option value="timer">Set timer</option>
         </select>
-        <!-- <span>B</span> -->
-        <!-- <button class="btn">Short</button> -->
-        <!-- <button class="btn">Average</button> -->
-        <!-- <button class="btn">Long</button> -->
-        <!-- <button class="btn">Extra Long</button> -->
-        <!-- <span>B</span> -->
       </section>
 
       <section class="countdown">
         <label for="minutes">Minutes</label>
         <input id="minutes" type="number" value="25" min="1" />
-        <span>:</span>
+        <span class="dots">:</span>
         <label for="seconds">Seconds</label>
         <input id="seconds" type="number" value="00" min="0" max="59" />
+      </section>
+
+      <section class="user_info">
+        <p>
+          Total study sessions <span class="study_counter" id="counter">0</span>
+        </p>
       </section>
 
       <section class="control_btns">

@@ -5,6 +5,7 @@ const pauseButton = document.getElementById("pause_btn");
 let minutes = document.getElementById("minutes");
 let seconds = document.getElementById("seconds");
 
+let counter = document.getElementById("counter");
 let quotes = document.getElementById("quotes");
 
 class Session {
@@ -45,6 +46,7 @@ const extralongSession = new Session(60, 20);
 let currentSession = new Study(25, 5);
 
 var t;
+let sessionCounter = 0;
 
 duration.addEventListener("input", function () {
   if (t) {
@@ -80,17 +82,15 @@ function checkDuration() {
       if (minutes.value < 10) {
         minutes.value = "0" + Number(minutes.value);
         currentSession.setMin = minutes.value;
-      }
-       else {
+      } else {
         currentSession.setMin = minutes.value;
       }
     });
     seconds.addEventListener("input", function () {
       if (seconds.value < 10) {
         seconds.value = "0" + Number(seconds.value);
-        currentSession.setSec = seconds.value        
-      } 
-      else {
+        currentSession.setSec = seconds.value;
+      } else {
         currentSession.setSec = seconds.value;
       }
     });
@@ -133,7 +133,7 @@ startButton.addEventListener("click", function () {
     currentSession.setSec = Number(currentSession.sec) - 1;
     if (currentSession.sessionOn === true) {
       startButton.innerHTML = "Session in progress";
-    } else if (currentSession.rest === "none") {      
+    } else if (currentSession.rest === "none") {
       startButton.innerHTML = "Timer countdown";
     } else {
       startButton.innerHTML = "Break time!";
@@ -162,6 +162,7 @@ function countdown(min, sec) {
     if (sec < 0) {
       if (min === 0) {
         if (currentSession.rest === "none") {
+          playAudio();
           fullReset();
         } else if (currentSession.sessionOn === true) {
           min = currentSession.rest;
@@ -172,6 +173,10 @@ function countdown(min, sec) {
           }
           currentSession.sessionOn = false;
           startButton.innerHTML = "Break time!";
+          sessionCounter++;
+          counter.innerHTML = `${sessionCounter}`;
+          playAudio();
+
           console.log("break!!!");
         } else {
           min = currentSession.duration;
@@ -182,6 +187,7 @@ function countdown(min, sec) {
           }
           currentSession.sessionOn = true;
           startButton.innerHTML = "Session in progress";
+          playAudio();
           console.log("session!!!!");
         }
       }
@@ -223,4 +229,11 @@ function fullReset() {
   checkDuration();
   currentSession.setMin = 0;
   currentSession.setSec = 0;
+  sessionCounter = 0;
+  counter.innerHTML = "0";
+}
+
+function playAudio() {
+  var audio = new Audio("/sound/Ding.mp3");
+  audio.play();
 }
