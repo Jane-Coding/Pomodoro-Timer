@@ -102,10 +102,8 @@ function confirmReset() {
     "If you change duration now it will reset current session. Are you sure you want to continue?"
   );
   if (response) {
-    console.log("Restart session");
     fullReset();
   } else {
-    console.log("Do nothing");
     if (currentSession.duration == 25) {
       duration.value = "regular";
     } else if (currentSession.duration == 40) {
@@ -118,7 +116,7 @@ function confirmReset() {
   }
 }
 
-startButton.addEventListener("click", function () {
+startButton.addEventListener("click", function (e) {
   if (currentSession.min == 0 && currentSession.sec == 0) {
     if (currentSession.rest === "none") {
       alert("You forgot to set timer!!!");
@@ -176,8 +174,6 @@ function countdown(min, sec) {
           sessionCounter++;
           counter.innerHTML = `${sessionCounter}`;
           playAudio();
-
-          console.log("break!!!");
         } else {
           min = currentSession.duration;
           if (min < 10) {
@@ -188,14 +184,11 @@ function countdown(min, sec) {
           currentSession.sessionOn = true;
           startButton.innerHTML = "Session in progress";
           playAudio();
-          console.log("session!!!!");
         }
       }
       min = min - 1;
       sec = 59;
     }
-
-    console.log(`${minutes.value} : ${seconds.value}`);
   }, 1000);
 }
 
@@ -207,8 +200,6 @@ pauseButton.addEventListener("click", function (e) {
 
     currentSession.setMin = minutes.value;
     currentSession.setSec = seconds.value;
-    console.log(currentSession.min);
-    console.log(currentSession.sec);
 
     if (minutes.value == currentSession.duration) {
       startButton.innerHTML = "Start study session";

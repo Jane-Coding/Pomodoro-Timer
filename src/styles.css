@@ -237,3 +237,16 @@ main {
 .control_btns button:nth-of-type(4){
     grid-column-end: span 2;
 }
+
+blockquote {
+    margin: 0 1em 1em 1em;
+}
+blockquote p {
+    padding: 1em;
+    color: var(--puce);
+    border-radius: 20px;
+}
+
+blockquote footer {
+    text-align: right;
+}

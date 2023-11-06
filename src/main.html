@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Navbar2</title>
+    <title>Pomodoro / Timer</title>
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
   </head>
@@ -38,11 +38,15 @@
         <button id="start_btn" class="btn">Start study session</button>
         <button id="pause_btn" class="btn">Pause</button>
         <button id="reset_btn" class="btn">Reset</button>
-        <button id="qotes_btn" class="btn">Get quotes for inspiration</button>
+        <button id="quotes_btn" class="btn">Get quotes for inspiration</button>
       </section>
-      <div>
-        <p id="quotes">Inspirational quotes here</p>
-      </div>
+      <blockquote>
+        <div class="box">
+          <p id="quote"></p>
+        </div>
+        <footer id="author"></footer>
+      </blockquote>
     </main>
+    <script src="quotes.js"></script>
   </body>
 </html>
